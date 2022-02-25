@@ -114,3 +114,9 @@ p {
 .card-title {
     margin-bottom: 0;
 }
+
+.card-img {
+    width: 286px;
+    height: 230px;
+    object-fit: cover;
+}
