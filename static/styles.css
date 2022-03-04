@@ -75,7 +75,7 @@ p {
 .intro-container {
     padding: 4rem;
     padding-bottom: 3rem;
-    background-color: rgba(244, 223, 186, 0.4);
+    background-color: #FFFBE9;
 }
 
 .cafe-text {
@@ -100,11 +100,6 @@ p {
     text-align: left;
 }
 
-/* .combined-img {
-    width: 300px;
-} */
-
-
 /* Cards container */
 .cards-container {
     padding-top: 3rem;
@@ -119,4 +114,42 @@ p {
     width: 286px;
     height: 230px;
     object-fit: cover;
+}
+
+/* Carousel */
+.car-image {
+    width: 1000px;
+    height: 500px;
+    object-fit: cover;
+}
+
+/* footer */
+footer {
+    background-color: #E3CAA5;
+    padding-top: 3%;
+    padding-bottom: 1%;
+    padding-left: 15%;
+    padding-right: 20%;
+}
+
+.footer-title {
+    font-size: 0.75rem;
+    padding-bottom: 5px;
+}
+
+footer ul {
+    list-style: none;
+    padding: 0%;
+}
+
+.icon-link {
+    text-decoration: none;
+    color: black;
+    font-size: 0.6rem;
+}
+
+.copyright {
+    font-size: 0.75rem;
+    text-align: right;
+    padding-top: 80px;
 }
