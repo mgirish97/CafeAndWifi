@@ -1,5 +1,7 @@
+import json
 from flask import Flask
 from flask import render_template
+from flask import jsonify
 from flask_sqlalchemy import SQLAlchemy
 from typing import Callable
 
@@ -25,18 +27,24 @@ class Cafe(db.Model):
     seats = db.Column(db.String(250), nullable=False)
     coffee_price = db.Column(db.String, nullable=False)
 
+    def to_dict(self):
+        return {column.name: getattr(self, column.name) for column in self.__table__.columns}
+
 # -------------------------------- Website ----------------------------------- #
 
 
 # TODO Home page
-all_cafes = db.session.query(Cafe).all()
-
 
 @app.route('/')
 def home():
-    return render_template('index.html', cafes=all_cafes)
+    return render_template('index.html')
 
-# Show all cafes
+
+@app.route('/all-cafes')
+def get_cafes():
+    all_cafes = db.session.query(Cafe).all()
+    return render_template('cafes.html', cafes=all_cafes)
+
 
 # Display map of all cafes
 
@@ -53,9 +61,13 @@ def home():
 # TODO GET:
 
 # /all: Gets all cafes from database
-
-
-print(db.session.query(Cafe).all())
+@app.route('/all')
+def get_all():
+    cafes = db.session.query(Cafe).all()
+    all_cafes_list = []
+    for cafe in cafes:
+        all_cafes_list.append(cafe.to_dict())
+    return jsonify(all_cafes=all_cafes_list)
 
 # /search: Get all cafes in a particular location or name
 
