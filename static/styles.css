@@ -92,12 +92,34 @@ p {
 }
 
 .wifi-img {
-    width: 65%;
+    width: 320px;
 }
 
 .wifi-text {
     padding-top: 60px;
     text-align: left;
+}
+
+@media (max-width: 990px) {
+    .cafe-text {
+        text-align: center;
+        width: 60%;
+        padding-top: 0%;
+        padding-bottom: 30px;
+    }
+
+    .wifi-text {
+        position: relative;
+        bottom: 340px;
+        text-align: center;
+        width: 60%;
+        padding-top: 30px;
+    }
+
+    .wifi-img {
+        position: relative;
+        top: 190px;
+    }
 }
 
 /* Cards container */
