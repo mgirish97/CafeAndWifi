@@ -1,8 +1,8 @@
-import json
 from flask import Flask
 from flask import render_template
 from flask import jsonify
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.sql.expression import func, select
 from typing import Callable
 
 
@@ -30,6 +30,13 @@ class Cafe(db.Model):
     def to_dict(self):
         return {column.name: getattr(self, column.name) for column in self.__table__.columns}
 
+
+# -------------------------------- Helper Functions ----------------------------------- #
+def get_rand_cafe():
+    rand_cafes = db.session.query(Cafe).order_by(func.random())[:3]
+    return rand_cafes
+
+
 # -------------------------------- Website ----------------------------------- #
 
 
@@ -37,7 +44,9 @@ class Cafe(db.Model):
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    rand_cafes = get_rand_cafe()
+    print(rand_cafes)
+    return render_template('index.html', rand_cafes=rand_cafes)
 
 
 @app.route('/all-cafes')
